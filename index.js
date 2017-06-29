@@ -132,6 +132,17 @@ function endGame() {
 }
 
 function moveDodger(e) {
+  const code = e.which
+  if ([LEFT_ARROW, RIGHT_ARROW].indexOf(code) > -1) {
+   e.preventDefault()
+   e.stopPropagation()
+ }
+
+ if (code === LEFT_ARROW) {
+   moveDodgerLeft()
+ } else if (code === RIGHT_ARROW) {
+   moveDodgerRight()
+ }
   // implement me!
   /**
    * This function should call `moveDodgerLeft()`
@@ -143,6 +154,13 @@ function moveDodger(e) {
 }
 
 function moveDodgerLeft() {
+  window.requestAnimationFrame(function() {
+    const left = positionToInteger(DODGER.style.left)
+
+    if (left > 0) {
+      DODGER.style.left = `${left - 4}px`;
+    }
+  })
   // implement me!
   /**
    * This function should move DODGER to the left
@@ -151,6 +169,13 @@ function moveDodgerLeft() {
 }
 
 function moveDodgerRight() {
+  window.requestAnimationFrame(function() {
+    const left = positionToInteger(DODGER.style.left)
+
+    if (left < 360) {
+      DODGER.style.left = `${left + 4}px`;
+    }
+  })
   // implement me!
   /**
    * This function should move DODGER to the right
